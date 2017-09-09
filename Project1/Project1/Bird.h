@@ -9,20 +9,21 @@ struct position
 class Bird
 {
 public:
-	Bird(unsigned int eyesight_ = 0, unsigned int maxRandomJiggle_ = 0, unsigned int speed_ = 5);
+	Bird(void);
 	void SetGlobalXYMax(unsigned int xMax, unsigned int yMax);
 	void calculateNewDir(Bird * birds, unsigned int birdCount);
 	void move(void);
 	void incrementEyesight(void);
-	void decrementEyesight(void);
+	bool decrementEyesight(void);
 	void incrementSpeed(void);
-	void decrementSpeed(void);
+	bool decrementSpeed(void);
 	void incrementMaxRandomJiggle(void);
-	void decrementMaxRandomJigggle(void);
+	bool decrementMaxRandomJigggle(void);
 	position getPos(void);
 	double getDir(void);
 	double getEyesight(void);
 	double getMaxRandomJiggle(void);
+	void initRandom(unsigned int udEyesight,unsigned int udSpeed);
 
 private:
 	position p;

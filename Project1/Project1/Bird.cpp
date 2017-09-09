@@ -4,11 +4,15 @@
 unsigned int Bird::xMax=100;
 unsigned int Bird::yMax=70;
 
-Bird::Bird(unsigned int eyesight_, unsigned int maxRandomJiggle_, unsigned int speed_)
+Bird::Bird(void)
 {
-	eyesight = eyesight_;
-	maxRandomJiggle = maxRandomJiggle_;
-	speed = speed_;
+	eyesight = 0;
+	maxRandomJiggle = 0;
+	speed = 1;
+	currentDir = 0;
+	p.posx = 0;
+	p.posy = 0;
+	newDir = 0;
 }
 
 void Bird::SetGlobalXYMax(unsigned int xMax_, unsigned int yMax_)
@@ -26,6 +30,7 @@ void Bird::calculateNewDir(Bird * birds, unsigned int birdCount)
 		if (isBirdInSight(birds + i))
 		{
 			AngleSum += (birds + i)->currentDir;
+			birdsInSight++;
 		}
 		else
 		{
@@ -44,7 +49,7 @@ void Bird::move(void)
 	for (int i = 0; i < speed; i++)
 	{
 		position newP;
-		double angle_deg = currentDir;
+		double angle_deg = newDir;
 		double angle_rad = deg2rad(angle_deg);
 		newP.posx = p.posx + cos(angle_rad);
 		newP.posy = p.posy + sin(angle_rad);
@@ -52,7 +57,7 @@ void Bird::move(void)
 		{
 			if (newP.posx > xMax)
 			{
-				newP.posx = p.posx - xMax;
+				newP.posx -= xMax;
 				if ((newP.posy > yMax))
 				{
 					newP.posy -= yMax;
@@ -96,9 +101,17 @@ void Bird::incrementEyesight(void)
 	eyesight++;
 }
 
-void Bird::decrementEyesight(void)
+bool Bird::decrementEyesight(void)
 {
-	eyesight--;
+	if (eyesight > 0)
+	{
+		eyesight--;
+		return true;
+	}
+	else
+	{
+		return false;
+	}
 }
 
 void Bird::incrementSpeed(void)
@@ -106,9 +119,17 @@ void Bird::incrementSpeed(void)
 	speed++;
 }
 
-void Bird::decrementSpeed(void)
+bool Bird::decrementSpeed(void)
 {
-	speed--;
+	if (speed> 0)
+	{
+		speed--;
+		return true;
+	}
+	else
+	{
+		return false;
+	}
 }
 
 void Bird::incrementMaxRandomJiggle(void)
@@ -116,9 +137,17 @@ void Bird::incrementMaxRandomJiggle(void)
 	maxRandomJiggle++;
 }
 
-void Bird::decrementMaxRandomJigggle(void)
+bool Bird::decrementMaxRandomJigggle(void)
 {
-	maxRandomJiggle--;
+	if (maxRandomJiggle > 0)
+	{
+		maxRandomJiggle--;
+		return true;
+	}
+	else
+	{
+		return false;
+	}
 }
 
 position Bird::getPos(void)
@@ -152,9 +181,9 @@ bool Bird::isBirdInSight(Bird * bird)
 	distancia[3] = sqrt((p.posx - (pos.posx + xMax))*(p.posx - (pos.posx + xMax)) + (p.posy - (yMax + pos.posy))*(p.posy - (yMax + pos.posy))); //echo
 	distancia[4] = sqrt((p.posx - (pos.posx - xMax))*(p.posx - (pos.posx - xMax)) + (p.posy - pos.posy)*(p.posy - pos.posy)); //echo
 	distancia[5] = sqrt((p.posx - (pos.posx + xMax))*(p.posx - (pos.posx + xMax)) + (p.posy - pos.posy)*(p.posy - pos.posy)); //echo
-	distancia[2] = sqrt((p.posx - pos.posx)*(p.posx - pos.posx) + (p.posy - (pos.posy - yMax))*(p.posy - (pos.posy - yMax))); // echo
+	distancia[6] = sqrt((p.posx - pos.posx)*(p.posx - pos.posx) + (p.posy - (pos.posy - yMax))*(p.posy - (pos.posy - yMax))); // echo
 	distancia[7] = sqrt((p.posx - (pos.posx - xMax))*(p.posx - (pos.posx - xMax)) + (p.posy - (pos.posy - yMax))*(p.posy - (pos.posy - yMax))); //echo
-	distancia[7] = sqrt((p.posx - (pos.posx + xMax))*(p.posx - (pos.posx + xMax)) + (p.posy - (pos.posy - yMax))*(p.posy - (pos.posy - yMax))); //echo
+	distancia[8] = sqrt((p.posx - (pos.posx + xMax))*(p.posx - (pos.posx + xMax)) + (p.posy - (pos.posy - yMax))*(p.posy - (pos.posy - yMax))); //echo
 	double smallest = distancia[0];
 	for (int i = 1; i < 9; ++i)
 	{
@@ -173,6 +202,15 @@ bool Bird::isBirdInSight(Bird * bird)
 
 double Bird::deg2rad(double angulo_deg)
 {
-	const double pi = atan(1) * 4;
+	static const double pi = atan(1) * 4;
 	return ((angulo_deg*pi) / 180.0);
+}
+
+void Bird::initRandom(unsigned int udEyesight, unsigned int udSpeed)
+{
+	currentDir = (double)(rand()) / ((double)(RAND_MAX /359.999));
+	p.posx = (double)(rand()) / ((double)(RAND_MAX / xMax));
+	p.posy = (double)(rand()) / ((double)(RAND_MAX / yMax));
+	speed = udSpeed;
+	eyesight = udEyesight;
 }
