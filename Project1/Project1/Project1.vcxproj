@@ -123,6 +123,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Bird.h" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="simulation.h" />
     <ClInclude Include="viewer.h" />
   </ItemGroup>
@@ -136,8 +137,11 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="..\..\..\..\..\Desktop\bird.png" />
-    <Image Include="..\..\..\..\..\Desktop\cielo.png" />
+    <ResourceCompile Include="Project1.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Images\bird.png" />
+    <Image Include="Images\cielo.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
