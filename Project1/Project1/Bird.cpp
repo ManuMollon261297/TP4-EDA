@@ -1,8 +1,10 @@
 #include "Bird.h"
 #include <cmath>
 
+unsigned int Bird::xMax=100;
+unsigned int Bird::yMax=70;
 
-Bird::Bird(unsigned int eyesight_ = 0, unsigned int maxRandomJiggle_ = 0, unsigned int speed_ = 5)
+Bird::Bird(unsigned int eyesight_, unsigned int maxRandomJiggle_, unsigned int speed_)
 {
 	eyesight = eyesight_;
 	maxRandomJiggle = maxRandomJiggle_;
@@ -143,7 +145,7 @@ bool Bird::isBirdInSight(Bird * bird)
 {
 	bool birdFound = false;
 	double distancia[9];
-	position pos = bird->getPos;
+	position pos = bird->getPos();
 	distancia[0] = sqrt((p.posx - pos.posx)*(p.posx - pos.posx) + (p.posy - pos.posy)*(p.posy - pos.posy)); //echo // las nueve distancias posibles en una superificie toroidal
 	distancia[1] = sqrt((p.posx - (pos.posx- xMax))*(p.posx - (pos.posx - xMax)) + (p.posy - (yMax + pos.posy))*(p.posy - (yMax + pos.posy))); //echo
 	distancia[2] = sqrt((p.posx - pos.posx)*(p.posx - pos.posx) + (p.posy - (yMax + pos.posy))*(p.posy - (yMax + pos.posy))); // echo
@@ -153,7 +155,7 @@ bool Bird::isBirdInSight(Bird * bird)
 	distancia[2] = sqrt((p.posx - pos.posx)*(p.posx - pos.posx) + (p.posy - (pos.posy - yMax))*(p.posy - (pos.posy - yMax))); // echo
 	distancia[7] = sqrt((p.posx - (pos.posx - xMax))*(p.posx - (pos.posx - xMax)) + (p.posy - (pos.posy - yMax))*(p.posy - (pos.posy - yMax))); //echo
 	distancia[7] = sqrt((p.posx - (pos.posx + xMax))*(p.posx - (pos.posx + xMax)) + (p.posy - (pos.posy - yMax))*(p.posy - (pos.posy - yMax))); //echo
-	int smallest = distancia[0];
+	double smallest = distancia[0];
 	for (int i = 1; i < 9; ++i)
 	{
 		if (distancia[i] < smallest)
@@ -169,7 +171,7 @@ bool Bird::isBirdInSight(Bird * bird)
 }
 
 
-double deg2rad(double angulo_deg)
+double Bird::deg2rad(double angulo_deg)
 {
 	const double pi = atan(1) * 4;
 	return ((angulo_deg*pi) / 180.0);

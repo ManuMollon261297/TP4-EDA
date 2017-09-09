@@ -34,5 +34,6 @@ private:
 	static unsigned int xMax;
 	static unsigned int yMax;
 	bool isBirdInSight(Bird * bird);
+	double deg2rad(double angulo_deg);
 };
 
