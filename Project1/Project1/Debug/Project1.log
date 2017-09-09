@@ -1,0 +1,21 @@
+﻿  simulation.cpp
+c:\users\manuel mollon\source\repos\tp4-eda\project1\project1\simulation.cpp(5): warning C4018: '<': signed/unsigned mismatch
+c:\users\manuel mollon\source\repos\tp4-eda\project1\project1\simulation.cpp(9): warning C4018: '<': signed/unsigned mismatch
+  Bird.cpp
+c:\users\manuel mollon\source\repos\tp4-eda\project1\project1\bird.cpp(5): error C2572: 'Bird::Bird': redefinition of default argument: parameter 1
+  c:\users\manuel mollon\source\repos\tp4-eda\project1\project1\bird.h(12): note: see declaration of 'Bird::Bird'
+c:\users\manuel mollon\source\repos\tp4-eda\project1\project1\bird.cpp(5): error C2572: 'Bird::Bird': redefinition of default argument: parameter 2
+  c:\users\manuel mollon\source\repos\tp4-eda\project1\project1\bird.h(12): note: see declaration of 'Bird::Bird'
+c:\users\manuel mollon\source\repos\tp4-eda\project1\project1\bird.cpp(5): error C2572: 'Bird::Bird': redefinition of default argument: parameter 3
+  c:\users\manuel mollon\source\repos\tp4-eda\project1\project1\bird.h(12): note: see declaration of 'Bird::Bird'
+c:\users\manuel mollon\source\repos\tp4-eda\project1\project1\bird.cpp(22): warning C4018: '<': signed/unsigned mismatch
+c:\users\manuel mollon\source\repos\tp4-eda\project1\project1\bird.cpp(42): warning C4018: '<': signed/unsigned mismatch
+c:\users\manuel mollon\source\repos\tp4-eda\project1\project1\bird.cpp(46): error C3861: 'deg2rad': identifier not found
+c:\users\manuel mollon\source\repos\tp4-eda\project1\project1\bird.cpp(146): error C3867: 'Bird::getPos': non-standard syntax; use '&' to create a pointer to member
+c:\users\manuel mollon\source\repos\tp4-eda\project1\project1\bird.cpp(156): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+c:\users\manuel mollon\source\repos\tp4-eda\project1\project1\bird.cpp(161): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+c:\users\manuel mollon\source\repos\tp4-eda\project1\project1\bird.cpp(164): warning C4018: '<=': signed/unsigned mismatch
+  Generating Code...
+  Compiling...
+  main.cpp
+  Generating Code...
