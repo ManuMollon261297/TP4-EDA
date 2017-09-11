@@ -20,7 +20,10 @@ private:
 	void set_background(void);
 	void set_bird(Bird *pbird);
 	pic_dim get_pic_size(ALLEGRO_BITMAP *pic);
-	pic_dim set_pic_size(double factor);
+	pic_dim set_pic_size(pic_dim reference, double factor);
+	position set_pic_center(position reference, double factor);
+
+	position background_ref;
 	unsigned int width;
 	unsigned int height;
 	unsigned int bird_count;

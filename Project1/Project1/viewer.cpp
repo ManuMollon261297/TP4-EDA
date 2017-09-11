@@ -3,6 +3,8 @@
 #include <allegro5\allegro_image.h>
 #include <string.h>
 
+#define BIRD_FACTOR 0.1
+#define BKG_FACTOR 6
 #define DISP_W 640
 #define DISP_H 480
 
@@ -70,8 +72,6 @@ void viewer::init_allegro(void)
 		ret = 0;
 	}
 
-	set_background();
-	al_flip_display();
 }
 
 int viewer::is_init_ok(void)
@@ -81,17 +81,25 @@ int viewer::is_init_ok(void)
 
 void viewer::update_display()
 {
-	set_bird(&birds[1]);
+	set_background();
+
+	for (unsigned int i = 0; i < bird_count; i++) {
+		set_bird(&birds[i]);
+		al_flip_display();
+	}
+	
 	al_flip_display();
 }
 
 void viewer::set_background(void)
 {
-	position background_ref;
 	pic_dim sky_dim, sky_newDim;
+	pic_dim basic_dim;
+	basic_dim.width = width;
+	basic_dim.height = height;
 
 	sky_dim = get_pic_size(background);
-	sky_newDim = set_pic_size(6);
+	sky_newDim = set_pic_size(basic_dim, BKG_FACTOR);
 
 	background_ref.posx = (DISP_W / 2) - (sky_newDim.width / 2);
 	background_ref.posy = (DISP_H / 2) - (sky_newDim.height / 2);
@@ -108,18 +116,18 @@ void viewer::set_bird(Bird *pbird)
 
 	bird_dim = get_pic_size(birdPic);
 
-	bird_newDim.width = (bird_dim.width) / 7;
-	bird_newDim.height = (bird_dim.height) / 7;
+	bird_newDim = set_pic_size(bird_dim, BIRD_FACTOR);
 
 	bird_shift.posx = (bird_newDim.width) / 2;
 	bird_shift.posy = (bird_newDim.height) / 2;
 
-	//birdPic_center = pbird->getPos();
-	//birdPic_center.posx -= bird_shift.posx;
-	//birdPic_center.posy -= bird_shift.posy;
+	birdPic_center = set_pic_center(pbird->getPos(), BKG_FACTOR);
+
+	birdPic_center.posx += (background_ref.posx - bird_shift.posx);
+	birdPic_center.posy += (background_ref.posy - bird_shift.posy);
 	
-	birdPic_center.posx = (DISP_W / 2) - (bird_shift.posx);
-	birdPic_center.posy = (DISP_H / 2) - (bird_shift.posy);
+	//birdPic_center.posx = (DISP_W / 2) - (bird_shift.posx);
+	//birdPic_center.posy = (DISP_H / 2) - (bird_shift.posy);
 
 	al_draw_scaled_bitmap(birdPic, 
 						  0, 0, bird_dim.width, bird_dim.height, 
@@ -136,12 +144,22 @@ pic_dim viewer::get_pic_size(ALLEGRO_BITMAP * pic)
 	return aux;
 }
 
-pic_dim viewer::set_pic_size(double factor)
+pic_dim viewer::set_pic_size(pic_dim reference, double factor)
 {
 	pic_dim aux;
 
-	aux.width = width * factor;
-	aux.height = height * factor;
+	aux.width = reference.width * factor;
+	aux.height = reference.height * factor;
+
+	return aux;
+}
+
+position viewer::set_pic_center(position reference, double factor)
+{
+	position aux;
+
+	aux.posx = reference.posx * factor;
+	aux.posy = reference.posy * factor;
 
 	return aux;
 }
