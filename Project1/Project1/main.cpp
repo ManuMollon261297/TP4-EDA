@@ -8,7 +8,7 @@
 #define MAX_ANGLE 359.9
 #define USER_DATA_EYESIGHT 10
 #define USER_DATA_SPEED 1
-#define N_PAJAROS 5
+#define N_PAJAROS 10
 
 #define PRINT_PAJAROS for (int i = 0; i < N_PAJAROS; i++){ pos = birds[i].getPos(); cout << "POSX:"<<pos.posx << endl; cout << "POSY:"<< pos.posy << endl; cout << "DIR:" << birds[i].getDir() << endl;}
 using namespace std;
@@ -57,7 +57,7 @@ int main()
 
 	srand((unsigned)time(NULL));
 	Bird birds[N_PAJAROS];
-	position pos;
+	//position pos;
 	for (int i = 0; i < N_PAJAROS; i++)
 	{
 		birds[i].initRandom(USER_DATA_EYESIGHT, USER_DATA_SPEED);
@@ -89,9 +89,7 @@ int main()
 		control1.update_ctrl();
 		sim.update(birds, N_PAJAROS);
 		view.update_display();
-		//printf("randomjigg: %f speed: %f eyesight: %f", birds->getMaxRandomJiggle(), birds->getSpeed(), birds->getEyesight());
-		//PRINT_PAJAROS
-		//if (system("CLS")) system("clear");
+		cout << birds->getSpeed() << "-" << birds->getMaxRandomJiggle() << endl;
 	}
 
 	control1.destroy_controller_utils();

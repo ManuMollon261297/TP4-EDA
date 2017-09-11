@@ -35,7 +35,7 @@ int controller::justinit() {
 	}
 
 	
-	timerc_max = 5; // esta variable es de ajuste fino de la actualizacion 
+	timerc_max = 12; // esta variable es de ajuste fino de la actualizacion 
 	// de teclas
 
 
@@ -87,7 +87,84 @@ void controller::update_ctrl(void) {
 		}
 		else {
 			timer_c = 0;
+
+			if (!key_pressed.compare("KEY62")) { // +
+				for (int i = 0; i < birdcount; i++) {
+					if (birds[i].getSpeed() < maxspeed) {
+						birds[i].incrementSpeed();
+					}
+				}
+
+				/*if (speed < maxspeed) {
+				speed++;
+				}*/
+			}
+			if (!key_pressed.compare("KEY61")) { // - 
+
+
+				for (int i = 0; i < birdcount; i++) {
+					if (birds[i].getSpeed() > 0) {
+						birds[i].decrementSpeed();
+					}
+				}
+
+
+				/*	if (speed > 0) {
+				speed--;
+				}*/
+			}
+			if (!key_pressed.compare("E")) {
+				for (int i = 0; i < birdcount; i++) {
+					if (birds[i].getMaxRandomJiggle() < maxrandomjigglelimit)
+						birds[i].incrementMaxRandomJiggle();
+				}
+
+
+				/*if (randomjiggle < maxrandomjiggle) {
+				randomjiggle++;
+				}*/
+			}
+			if (!key_pressed.compare("D")) {
+
+				for (int i = 0; i < birdcount; i++) {
+					if (birds[i].getMaxRandomJiggle()>0) {
+						birds[i].decrementMaxRandomJiggle();
+					}
+				}
+
+
+				/*if (randomjiggle > 0) {
+				randomjiggle--;
+				}*/
+			}
+
+			if (!key_pressed.compare("R")) {
+
+				for (int i = 0; i < birdcount; i++) {
+					if (birds[i].getEyesight()<maxeyesight) {
+						birds[i].incrementEyesight();
+					}
+				}
+
+				/*if (eyesight < maxeyesight) {
+				eyesight++;
+				}*/
+			}
+			if (!key_pressed.compare("F")) {
+
+
+				for (int i = 0; i < birdcount; i++) {
+					if (birds[i].getEyesight()>0) {
+						birds[i].decrementEyesight();
+					}
+				}
+
+				/*if (eyesight > 0) {
+				eyesight--;
+				}*/
+			}
 		}
+		
 	}
 	// deberia poner que cada cierto tiempo se pueda incrementar 
 
@@ -105,81 +182,7 @@ void controller::update_ctrl(void) {
 	}
 
 	if (timer_c == timerc_max) {
-		if (!key_pressed.compare("KEY62")) { // +
-			for (int i = 0; i < birdcount; i++) {
-				if (birds[i].getSpeed() < maxspeed) {
-					birds[i].incrementSpeed();
-				}
-		}
-		
-			/*if (speed < maxspeed) {
-				speed++;
-			}*/
-		}
-		if (!key_pressed.compare("KEY61")) { // - 
-			
 
-			for (int i = 0; i < birdcount; i++) {
-				if (birds[i].getSpeed() > 0 ) {
-					birds[i].decrementSpeed();
-				}	
-			}
-		
-			
-		/*	if (speed > 0) {
-				speed--;
-			}*/
-		}
-		if (!key_pressed.compare("E")) {
-			for (int i = 0; i < birdcount; i++) {
-			if(birds[i].getMaxRandomJiggle() < maxrandomjigglelimit)
-			birds[i].incrementMaxRandomJiggle();
-		}
-
-
-			/*if (randomjiggle < maxrandomjiggle) {
-				randomjiggle++;
-			}*/
-		}
-		if (!key_pressed.compare("D")) {
-			
-			for (int i = 0; i < birdcount; i++) {
-				if(birds[i].getMaxRandomJiggle()>0){
-					birds[i].decrementMaxRandomJiggle();
-				}
-			}
-			
-			
-			/*if (randomjiggle > 0) {
-				randomjiggle--;
-			}*/
-		}
-
-		if (!key_pressed.compare("R")) {
-			
-			for (int i = 0; i < birdcount; i++) {
-				if(birds[i].getEyesight()<maxeyesight){
-					birds[i].incrementEyesight();
-				}
-			}
-
-			/*if (eyesight < maxeyesight) {
-				eyesight++;
-			}*/
-		}
-		if (!key_pressed.compare("F")) {
-
-			
-			for (int i = 0; i < birdcount; i++) {
-				if(birds[i].getEyesight()>0){
-					birds[i].decrementEyesight();
-				}
-			}
-			
-			/*if (eyesight > 0) {
-				eyesight--;
-			}*/
-		}
 	}
 
 	

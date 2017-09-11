@@ -7,7 +7,7 @@ unsigned int Bird::yMax=70;
 Bird::Bird(void)
 {
 	eyesight = 0;
-	maxRandomJiggle = 0;
+	maxRandomJiggle = 3;
 	speed = 1;
 	currentDir = 0;
 	p.posx = 0;
