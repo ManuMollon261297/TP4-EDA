@@ -1,2 +1,5 @@
-﻿  Project1.vcxproj -> C:\Users\Manuel Mollon\source\repos\TP4-EDA\Project1\Debug\Project1.exe
+﻿  Bird.cpp
+c:\users\manuel mollon\source\repos\tp4-eda\project1\project1\bird.cpp(28): warning C4018: '<': signed/unsigned mismatch
+c:\users\manuel mollon\source\repos\tp4-eda\project1\project1\bird.cpp(49): warning C4018: '<': signed/unsigned mismatch
+  Project1.vcxproj -> C:\Users\Manuel Mollon\source\repos\TP4-EDA\Project1\Debug\Project1.exe
   Project1.vcxproj -> C:\Users\Manuel Mollon\source\repos\TP4-EDA\Project1\Debug\Project1.pdb (Partial PDB)

@@ -96,13 +96,12 @@ int main()
 		control1.update_ctrl();
 		sim.update(birds, N_PAJAROS);
 
-		printf("randomjigg: %f speed: %f eyesight: %f", birds->getMaxRandomJiggle(), birds->getSpeed(), birds->getEyesight());
-		//PRINT_PAJAROS
+		//printf("randomjigg: %f speed: %f eyesight: %f", birds->getMaxRandomJiggle(), birds->getSpeed(), birds->getEyesight());
+		PRINT_PAJAROS
 		if (system("CLS")) system("clear");
 	}
 
 	control1.destroy_controller_utils();
-
 	al_destroy_display(display);
 	return 0;
 }

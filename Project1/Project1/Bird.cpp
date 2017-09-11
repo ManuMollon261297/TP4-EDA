@@ -82,11 +82,11 @@ void Bird::move(void)
 			}
 			else if(newP.posy > yMax)
 			{
-				newP.posy += yMax;
+				newP.posy -= yMax;
 			}
 			else if (newP.posy < 0)
 			{
-				newP.posy -= yMax;
+				newP.posy += yMax;
 			}
 		}
 		p.posx = newP.posx;
