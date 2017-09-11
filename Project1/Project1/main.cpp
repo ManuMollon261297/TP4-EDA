@@ -46,7 +46,6 @@ using namespace std;
 
 int main()
 {
-	ALLEGRO_DISPLAY * display;
 	//Prueba de impresion de pajaros
 		/*viewer view(100, 70, birds, N_PAJAROS);
 		view.init_allegro();
@@ -70,23 +69,17 @@ int main()
 
 	simulation sim;
 
-	if (!al_init()) {
-		return -1;
+	viewer view(100, 70, birds, N_PAJAROS);
+	view.init_allegro();
+	if (!view.is_init_ok()) {
+		return -2;
 	}
-
 
 	if (control1.justinit()) {
 		return -1;
 	} // solo debe ser llamada 1 sola vez
 
-	display = al_create_display(640, 480);
-	if (!display) {
-		fprintf(stderr, "failed to create display!\n");
-		control1.destroy_controller_utils();
-		return -1;
-	}
-
-	control1.display = display;
+	control1.display = view.display;
 	// controller necesita de un puntero al display para poder cerrarlo
 	if (control1.register_events()) {
 		return -1;
@@ -95,13 +88,12 @@ int main()
 	while (control1.isnotexit()) {
 		control1.update_ctrl();
 		sim.update(birds, N_PAJAROS);
-
+		view.update_display();
 		//printf("randomjigg: %f speed: %f eyesight: %f", birds->getMaxRandomJiggle(), birds->getSpeed(), birds->getEyesight());
-		PRINT_PAJAROS
-		if (system("CLS")) system("clear");
+		//PRINT_PAJAROS
+		//if (system("CLS")) system("clear");
 	}
 
 	control1.destroy_controller_utils();
-	al_destroy_display(display);
 	return 0;
 }

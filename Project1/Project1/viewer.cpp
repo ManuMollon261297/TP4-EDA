@@ -85,7 +85,6 @@ void viewer::update_display()
 
 	for (unsigned int i = 0; i < bird_count; i++) {
 		set_bird(&birds[i]);
-		al_flip_display();
 	}
 	
 	al_flip_display();

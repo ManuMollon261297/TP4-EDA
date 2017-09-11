@@ -15,6 +15,7 @@ public:
 	void init_allegro(void); // Debe llamarse luego de crear un objeto
 	int is_init_ok(void); // Debe llamarse luego de init_allegro()
 	void update_display();
+	ALLEGRO_DISPLAY *display;
 
 private:
 	void set_background(void);
@@ -31,6 +32,5 @@ private:
 	ALLEGRO_BITMAP *background;
 	ALLEGRO_BITMAP *birdPic;
 	Bird *birds;
-	ALLEGRO_DISPLAY *display;
 	//ALLEGRO_FONT *font;
 };

@@ -136,14 +136,14 @@
     <ClCompile Include="viewer.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
     <ResourceCompile Include="Project1.rc" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Images\bird.png" />
     <Image Include="Images\cielo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

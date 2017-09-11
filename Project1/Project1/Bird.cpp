@@ -92,7 +92,7 @@ void Bird::move(void)
 		p.posx = newP.posx;
 		p.posy = newP.posy;
 		currentDir = newDir;
-		newDir = 0;
+		//newDir = 0;
 	}
 }
 
