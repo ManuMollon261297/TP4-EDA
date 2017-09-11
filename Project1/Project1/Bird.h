@@ -18,11 +18,12 @@ public:
 	void incrementSpeed(void);
 	bool decrementSpeed(void);
 	void incrementMaxRandomJiggle(void);
-	bool decrementMaxRandomJigggle(void);
+	bool decrementMaxRandomJiggle(void);
 	position getPos(void);
 	double getDir(void);
 	double getEyesight(void);
 	double getMaxRandomJiggle(void);
+	double getSpeed(void);
 	void initRandom(unsigned int udEyesight,unsigned int udSpeed);
 
 private:

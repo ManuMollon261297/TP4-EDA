@@ -137,7 +137,7 @@ void Bird::incrementMaxRandomJiggle(void)
 	maxRandomJiggle++;
 }
 
-bool Bird::decrementMaxRandomJigggle(void)
+bool Bird::decrementMaxRandomJiggle(void)
 {
 	if (maxRandomJiggle > 0)
 	{
@@ -213,4 +213,9 @@ void Bird::initRandom(unsigned int udEyesight, unsigned int udSpeed)
 	p.posy = (double)(rand()) / ((double)(RAND_MAX / yMax));
 	speed = udSpeed;
 	eyesight = udEyesight;
+}
+
+double Bird::getSpeed(void)
+{
+	return speed;
 }

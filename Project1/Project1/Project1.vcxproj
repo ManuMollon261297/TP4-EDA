@@ -123,12 +123,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Bird.h" />
+    <ClInclude Include="controller.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="simulation.h" />
     <ClInclude Include="viewer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Bird.cpp" />
+    <ClCompile Include="controller.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="simulation.cpp" />
     <ClCompile Include="viewer.cpp" />
