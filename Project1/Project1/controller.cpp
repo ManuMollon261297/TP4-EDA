@@ -1,6 +1,7 @@
 #include "controller.h"
 
 const float FPS = 60.0;
+const unsigned int SENSIBILITY_CONST = 7;
 
 controller::controller(unsigned int toggle_key_ , unsigned int timer_c_, std::string key_pressed_, unsigned int maxrandomjigglelimit_ , unsigned int maxspeed_ ) {
 	event_queue =  nullptr;
@@ -14,7 +15,7 @@ controller::controller(unsigned int toggle_key_ , unsigned int timer_c_, std::st
 }
 		
 
-int controller::justinit() {
+int controller::control_init() {
 
 	if (!al_install_keyboard()) {
 		return -1;
@@ -35,18 +36,8 @@ int controller::justinit() {
 	}
 
 	
-	timerc_max = 12; // esta variable es de ajuste fino de la actualizacion 
+	timerc_max = SENSIBILITY_CONST; // esta variable es de ajuste fino de la actualizacion 
 	// de teclas
-
-
-	// Los siguientes son valores de prueba
-
-	/*eyesight = 0;
-	randomjiggle = 0;
-	speed = 0;
-	maxspeed = 20;
-	maxeyesight = 10;
-	maxrandomjiggle = 10;*/
 
 	return 0;
 }
@@ -82,92 +73,57 @@ int controller::isnotexit() {
 void controller::update_ctrl(void) {
 	if (evs.type == ALLEGRO_EVENT_TIMER) {
 		
-		if (timer_c < timerc_max) {
-			timer_c++;
+		if (timer_c < timerc_max) { // esto es para frenar la actualizacion de 
+			timer_c++;				// teclas
 		}
 		else {
 			timer_c = 0;
 
-			if (!key_pressed.compare("KEY62")) { // +
+			if (!key_pressed.compare("KEY62")) { //  KEY62 es '+'
 				for (int i = 0; i < birdcount; i++) {
 					if (birds[i].getSpeed() < maxspeed) {
 						birds[i].incrementSpeed();
 					}
 				}
-
-				/*if (speed < maxspeed) {
-				speed++;
-				}*/
 			}
-			if (!key_pressed.compare("KEY61")) { // - 
-
-
+			if (!key_pressed.compare("KEY61")) { // KEY 61 es '-' 
 				for (int i = 0; i < birdcount; i++) {
 					if (birds[i].getSpeed() > 0) {
 						birds[i].decrementSpeed();
 					}
 				}
-
-
-				/*	if (speed > 0) {
-				speed--;
-				}*/
 			}
 			if (!key_pressed.compare("E")) {
 				for (int i = 0; i < birdcount; i++) {
 					if (birds[i].getMaxRandomJiggle() < maxrandomjigglelimit)
 						birds[i].incrementMaxRandomJiggle();
 				}
-
-
-				/*if (randomjiggle < maxrandomjiggle) {
-				randomjiggle++;
-				}*/
 			}
 			if (!key_pressed.compare("D")) {
-
 				for (int i = 0; i < birdcount; i++) {
 					if (birds[i].getMaxRandomJiggle()>0) {
 						birds[i].decrementMaxRandomJiggle();
 					}
 				}
-
-
-				/*if (randomjiggle > 0) {
-				randomjiggle--;
-				}*/
 			}
-
 			if (!key_pressed.compare("R")) {
-
 				for (int i = 0; i < birdcount; i++) {
 					if (birds[i].getEyesight()<maxeyesight) {
 						birds[i].incrementEyesight();
 					}
 				}
-
-				/*if (eyesight < maxeyesight) {
-				eyesight++;
-				}*/
 			}
 			if (!key_pressed.compare("F")) {
-
-
 				for (int i = 0; i < birdcount; i++) {
 					if (birds[i].getEyesight()>0) {
 						birds[i].decrementEyesight();
 					}
 				}
-
-				/*if (eyesight > 0) {
-				eyesight--;
-				}*/
 			}
 		}
 		
 	}
-	// deberia poner que cada cierto tiempo se pueda incrementar 
-
+	
 	else if (evs.type == ALLEGRO_EVENT_KEY_DOWN) {
 		if (toggle_key == 0) {
 			key_pressed = al_keycode_to_name(evs.keyboard.keycode);
@@ -180,14 +136,24 @@ void controller::update_ctrl(void) {
 			key_pressed = "RESET";
 		}
 	}
-
-	if (timer_c == timerc_max) {
-
-	}
-
-	
 }
-void controller::destroy_controller_utils(void) {
+
+//unsigned int maxrandomjigglelimit;
+//unsigned int maxspeed;
+//unsigned int maxeyesight;
+//unsigned int birdcount;
+void controller::setBirdCount(unsigned int n){
+	birdcount = n;
+}
+void controller::setBirdPointer(Bird * p2bird) {
+	if (p2bird != nullptr) {
+		birds = p2bird;
+	}
+}
+// display // set birds y setbirdcount
+
+
+controller::~controller(void) {
 	al_destroy_timer(timer);
 	al_destroy_event_queue(event_queue);
 }

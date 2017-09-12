@@ -71,8 +71,8 @@ int main(int argc, char *argv[])
 	}
 
 	controller control1;
-	control1.birds = birds;
-	control1.birdcount = sim_data.bird_cnt_data.value;
+	control1.setBirdPointer(birds);
+	control1.setBirdCount(sim_data.bird_cnt_data.value);
 
 	simulation sim;
 
@@ -82,7 +82,7 @@ int main(int argc, char *argv[])
 		return -2;
 	}
 
-	if (control1.justinit()) { // solo debe ser llamada 1 sola vez
+	if (control1.control_init()) { // solo debe ser llamada 1 sola vez
 		delete[] birds;
 		return -1;
 	} 
@@ -101,7 +101,7 @@ int main(int argc, char *argv[])
 		//cout << birds->getSpeed() << "-" << birds->getMaxRandomJiggle() << endl;
 	}
 
-	control1.destroy_controller_utils();
+	control1.~controller();
 	delete[] birds;
 	return 0;
 }
