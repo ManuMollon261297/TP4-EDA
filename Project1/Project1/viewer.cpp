@@ -104,8 +104,9 @@ void viewer::update_display()
 	for (unsigned int i = 0; i < bird_count; i++) {
 		set_bird(&birds[i]);
 	}
-	
-	al_draw_text(text, WHITE, 20, DISP_H-32, 0,"Opciones de Teclado (+/-): ");
+
+	al_draw_text(text, WHITE, DISP_W/2, 11, ALLEGRO_ALIGN_CENTER, "SIMULACION: Bandada de Pajaros - (Para salir cierre la ventana o presione ESC)");
+	al_draw_text(text, WHITE, DISP_W/2, DISP_H-32, ALLEGRO_ALIGN_CENTER,"Opciones de Teclado (+/-) -> Speed (+/-) - RandomJiggle (E/D) - EyeSight (R/F)");
 	al_flip_display();
 }
 

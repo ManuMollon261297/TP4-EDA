@@ -9,7 +9,7 @@
 #define MAX_ANGLE 359.9
 #define AUX_LEN 20 
 #define EOT '\0'
-#define SPEED 10
+#define SPEED 1
 #define NO_DATA -1
 #define RECIEVED_DATA 1
 
