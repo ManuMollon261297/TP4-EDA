@@ -124,6 +124,7 @@
   <ItemGroup>
     <ClInclude Include="Bird.h" />
     <ClInclude Include="controller.h" />
+    <ClInclude Include="lib.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="simulation.h" />
     <ClInclude Include="viewer.h" />
@@ -131,6 +132,7 @@
   <ItemGroup>
     <ClCompile Include="Bird.cpp" />
     <ClCompile Include="controller.cpp" />
+    <ClCompile Include="lib.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="simulation.cpp" />
     <ClCompile Include="viewer.cpp" />
