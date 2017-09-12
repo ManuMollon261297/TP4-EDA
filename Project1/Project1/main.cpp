@@ -9,8 +9,7 @@
 #define MAX_ANGLE 359.9
 #define AUX_LEN 20 
 #define EOT '\0'
-#define USER_DATA_EYESIGHT 10
-#define USER_DATA_SPEED 1
+#define SPEED 10
 #define NO_DATA -1
 #define RECIEVED_DATA 1
 
@@ -50,7 +49,7 @@ int main(int argc, char *argv[])
 	sim_data.eyeSight_data.flag = NO_DATA;
 	sim_data.randomJiggle_data.flag = NO_DATA;
 	
-	char *test[] = { "FileName", "-birds", "7", "-eyesight", "5", "-randomjiggle", "2"};
+	char *test[] = { "FileName", "-birds", "15", "-eyesight", "3", "-randomjiggle", "2"};
 	int cmd_ans = 0;
 	
 	cmd_ans = parseCmdLine(7, test, parseCallback, &sim_data);
@@ -68,7 +67,7 @@ int main(int argc, char *argv[])
 
 	for (int i = 0; i < sim_data.bird_cnt_data.value; i++) // Inicializacion de pajaros
 	{
-		birds[i].initRandom(USER_DATA_EYESIGHT, USER_DATA_SPEED);
+		birds[i].initRandom(sim_data.eyeSight_data.value, SPEED); // Velocidad predeterminada inicial
 	}
 
 	controller control1;

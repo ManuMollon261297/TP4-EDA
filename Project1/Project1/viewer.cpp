@@ -1,12 +1,16 @@
 #include <iostream>
 #include "viewer.h"
+#include <allegro5\allegro_color.h>
 #include <allegro5\allegro_image.h>
+#include <allegro5\allegro_ttf.h> 
 #include <string.h>
 
-#define BIRD_FACTOR 0.1
-#define BKG_FACTOR 6
-#define DISP_W 640
-#define DISP_H 480
+#define BIRD_FACTOR 0.05
+#define BKG_FACTOR 8
+#define DISP_W 960
+#define DISP_H 640
+#define BLACK (al_map_rgb(0,0,0))
+#define WHITE (al_map_rgb(255,255,255))
 
 viewer::viewer(unsigned int width_, unsigned int height_, Bird *birds_, unsigned int bird_count_)
 {
@@ -14,7 +18,7 @@ viewer::viewer(unsigned int width_, unsigned int height_, Bird *birds_, unsigned
 	height = height_;
 	birds = birds_;
 	bird_count = bird_count_;
-	ret = 1; // Value por defecto
+	ret = 1; // Valor por defecto
 }
 
 viewer::~viewer()
@@ -44,6 +48,8 @@ void viewer::init_allegro(void)
 		fprintf(stderr, "Failed to initialize Font\n");
 		ret = 0;
 	}
+
+	al_init_ttf_addon();
 	
 	background = al_load_bitmap("Images/cielo.png");
 	if (!background) {
@@ -59,6 +65,17 @@ void viewer::init_allegro(void)
 		al_shutdown_image_addon();
 		al_shutdown_font_addon();
 		fprintf(stderr, "failed to create display!\n");
+		ret = 0;
+	}
+
+	text = al_load_ttf_font("Raleway-Black.ttf", 20, 0);
+
+	if (!text) {
+		al_destroy_bitmap(background);
+		al_destroy_bitmap(birdPic);
+		al_shutdown_image_addon();
+		al_shutdown_font_addon();
+		fprintf(stderr, "failed to load ttf font!\n");
 		ret = 0;
 	}
 
@@ -81,12 +98,14 @@ int viewer::is_init_ok(void)
 
 void viewer::update_display()
 {
+	al_clear_to_color(BLACK);
 	set_background();
 
 	for (unsigned int i = 0; i < bird_count; i++) {
 		set_bird(&birds[i]);
 	}
 	
+	al_draw_text(text, WHITE, 20, DISP_H-32, 0,"Opciones de Teclado (+/-): ");
 	al_flip_display();
 }
 

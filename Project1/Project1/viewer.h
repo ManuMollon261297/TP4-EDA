@@ -1,6 +1,6 @@
 #include "Bird.h"
 #include <allegro5\allegro.h>
-#include <allegro5\allegro_font.h>
+#include <allegro5/allegro_font.h> 
 
 typedef struct  {
 	double width;
@@ -31,6 +31,7 @@ private:
 	int ret; // Check de la inicializacion de allegro 
 	ALLEGRO_BITMAP *background;
 	ALLEGRO_BITMAP *birdPic;
+	ALLEGRO_FONT *text;
 	Bird *birds;
 	//ALLEGRO_FONT *font;
 };
