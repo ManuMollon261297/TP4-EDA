@@ -3,7 +3,7 @@
 const float FPS = 60.0;
 const unsigned int SENSIBILITY_CONST = 7;
 
-controller::controller(unsigned int toggle_key_ , unsigned int timer_c_, std::string key_pressed_, unsigned int maxrandomjigglelimit_ , unsigned int maxspeed_ ) {
+controller::controller(unsigned int toggle_key_ , unsigned int timer_c_, std::string key_pressed_, unsigned int maxrandomjigglelimit_ , unsigned int maxspeed_, unsigned int maxeyesight_ ) {
 	event_queue =  nullptr;
 	timer = nullptr;
 	display = nullptr;
@@ -12,6 +12,7 @@ controller::controller(unsigned int toggle_key_ , unsigned int timer_c_, std::st
 	key_pressed = key_pressed_;
 	maxrandomjigglelimit = maxrandomjigglelimit_;
 	maxspeed = maxspeed_;
+	maxeyesight = maxeyesight_;
 }
 		
 

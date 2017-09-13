@@ -28,7 +28,7 @@ public:
 	ALLEGRO_TIMER * timer;
 	ALLEGRO_EVENT evs;
 	
-	controller(unsigned int toggle_key_ = 0, unsigned int timer_c_ = 0, std::string key_pressed_ = "INIT", unsigned int maxrandomjigglelimit_ = 10, unsigned int maxspeed_ = 20);
+	controller(unsigned int toggle_key_ = 0, unsigned int timer_c_ = 0, std::string key_pressed_ = "INIT", unsigned int maxrandomjigglelimit_ = 10, unsigned int maxspeed_ = 20, unsigned int maxeyesight_ = 30);
 	int control_init();
 	int register_events();
 	int isnotexit();
