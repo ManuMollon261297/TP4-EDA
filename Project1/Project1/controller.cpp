@@ -108,14 +108,14 @@ void controller::update_ctrl(void) {
 			}
 			if (!key_pressed.compare("R")) {
 				for (int i = 0; i < birdcount; i++) {
-					if (birds[i].getEyesight()<maxeyesight) {
+					if (birds[i].getEyesight() < maxeyesight) {
 						birds[i].incrementEyesight();
 					}
 				}
 			}
 			if (!key_pressed.compare("F")) {
 				for (int i = 0; i < birdcount; i++) {
-					if (birds[i].getEyesight()>0) {
+					if ((birds[i].getEyesight()) > 0) {
 						birds[i].decrementEyesight();
 					}
 				}

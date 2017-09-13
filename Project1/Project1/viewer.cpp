@@ -1,14 +1,17 @@
 #include <iostream>
 #include "viewer.h"
+#include <cstdio>
 #include <allegro5\allegro_color.h>
 #include <allegro5\allegro_image.h>
 #include <allegro5\allegro_ttf.h> 
-#include <string.h>
+#include <string>
+
+using namespace std;
 
 #define BIRD_FACTOR 0.05
 #define BKG_FACTOR 8
 #define DISP_W 960
-#define DISP_H 640
+#define DISP_H 720
 #define BLACK (al_map_rgb(0,0,0))
 #define WHITE (al_map_rgb(255,255,255))
 
@@ -101,12 +104,23 @@ void viewer::update_display()
 	al_clear_to_color(BLACK);
 	set_background();
 
-	for (unsigned int i = 0; i < bird_count; i++) {
+	for (unsigned int i = 0; i < bird_count; i++) { // Dibuja los pajaros en pantalla
 		set_bird(&birds[i]);
 	}
 
-	al_draw_text(text, WHITE, DISP_W/2, 11, ALLEGRO_ALIGN_CENTER, "SIMULACION: Bandada de Pajaros - (Para salir cierre la ventana o presione ESC)");
-	al_draw_text(text, WHITE, DISP_W/2, DISP_H-32, ALLEGRO_ALIGN_CENTER,"Opciones de Teclado (+/-) -> Speed (+/-) - RandomJiggle (E/D) - EyeSight (R/F)");
+	string speed_txt, eyesight_txt, jiggle_txt;
+	speed_txt = to_string((int)(birds->getSpeed()));
+	
+	eyesight_txt = to_string((int)(birds->getEyesight()));
+	
+	jiggle_txt = to_string((int)(birds->getMaxRandomJiggle()));
+	                    
+	string values_txt = "Current values -> Speed: " + speed_txt + " - Random Jiggle: " + jiggle_txt + " - EyeSight: " + eyesight_txt;
+	const char* values_txt_f = values_txt.c_str();
+
+	al_draw_text(text, WHITE, DISP_W/2, 25, ALLEGRO_ALIGN_CENTER, "SIMULACION: Bandada de Pajaros - (Para salir cierre la ventana o presione ESC)");
+	al_draw_text(text, WHITE, DISP_W/2, DISP_H-70, ALLEGRO_ALIGN_CENTER,"Opciones de Teclado (+/-) -> Speed (+/-) - RandomJiggle (E/D) - EyeSight (R/F)");
+	al_draw_text(text, WHITE, DISP_W / 2, DISP_H - 40, ALLEGRO_ALIGN_CENTER, values_txt_f);
 	al_flip_display();
 }
 
