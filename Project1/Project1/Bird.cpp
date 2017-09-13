@@ -52,7 +52,7 @@ void Bird::move(void)
 		position newP;
 		double angle_deg = newDir;
 		double angle_rad = deg2rad(angle_deg);
-		newP.posx = p.posx + (cos(angle_rad)  /50.0);
+		newP.posx = p.posx + (cos(angle_rad)  /50.0); // revisar
 		newP.posy = p.posy + (sin(angle_rad) / 50.0);
 		if (((newP.posx) > xMax) || ((newP.posy) > yMax) || ((newP.posx) < 0) || ((newP.posy) < 0))
 		{

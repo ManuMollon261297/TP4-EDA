@@ -106,7 +106,7 @@ int main(int argc, char *argv[])
 		}
 		view.update_display();
 		//printf("%lf \n", al_get_timer_speed(control1.timer_graphic));
-		
+		// simulamos continuidad
 		//cout << birds->getSpeed() << "-" << birds->getMaxRandomJiggle() << endl;
 	}
 

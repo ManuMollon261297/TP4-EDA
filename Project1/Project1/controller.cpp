@@ -2,6 +2,7 @@
 
 const float FPS = 15.0;
 const float FPS_GRAPHIC = FPS*0.9;  
+// sincronizacion de timers
 
 controller::controller(unsigned int toggle_key_ , unsigned int timer_c_, std::string key_pressed_, unsigned int maxrandomjigglelimit_ , unsigned int maxspeed_, unsigned int maxeyesight_ ) {
 	event_queue =  nullptr;

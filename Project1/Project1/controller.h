@@ -12,8 +12,6 @@ using namespace std;
 class controller {
 private:
 	unsigned int toggle_key;
-	unsigned int timer_c;
-	unsigned int timerc_max;
 	unsigned int birdcount;
 	Bird * birds;
 

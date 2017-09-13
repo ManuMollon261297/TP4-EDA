@@ -12,7 +12,7 @@ public:
 	Bird(void);
 	void SetGlobalXYMax(unsigned int xMax, unsigned int yMax);
 	void calculateNewDir(Bird * birds, unsigned int birdCount);
-	void move(void);
+	void move(void); // modified
 	void incrementEyesight(void);
 	bool decrementEyesight(void);
 	void incrementSpeed(void);
