@@ -10,7 +10,6 @@ controller::controller(unsigned int toggle_key_ , unsigned int timer_c_, std::st
 	timer_graphic = nullptr;
 	display = nullptr;
 	toggle_key = toggle_key_;
-	timer_c = timer_c_;
 	key_pressed = key_pressed_;
 	maxrandomjigglelimit = maxrandomjigglelimit_;
 	maxspeed = maxspeed_;
