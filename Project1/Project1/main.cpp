@@ -65,7 +65,7 @@ int main(int argc, char *argv[])
 
 	Bird *birds = new Bird[sim_data.bird_cnt_data.value]; // Construccion de pajaros
 
-	for (int i = 0; i < sim_data.bird_cnt_data.value; i++) // Inicializacion de pajaros
+	for (unsigned int i = 0; i < sim_data.bird_cnt_data.value; i++) // Inicializacion de pajaros
 	{
 		birds[i].initRandom(sim_data.eyeSight_data.value, SPEED); // Velocidad predeterminada inicial
 	}
@@ -96,8 +96,17 @@ int main(int argc, char *argv[])
 
 	while (control1.isnotexit()) { // Main loop //
 		control1.update_ctrl();
-		sim.update(birds, sim_data.bird_cnt_data.value);
+		if (control1.ctrl_update_time()) {
+			control1.process_key();		
+		}
+
+		if (control1.graphic_update_time()) {				
+			sim.update(birds, sim_data.bird_cnt_data.value);
+			
+		}
 		view.update_display();
+		//printf("%lf \n", al_get_timer_speed(control1.timer_graphic));
+		
 		//cout << birds->getSpeed() << "-" << birds->getMaxRandomJiggle() << endl;
 	}
 
@@ -198,45 +207,3 @@ int look_on_table(char arr[]) {
 
 	return ((lookup_table[k] == "EOTABLE") ? -1 : k);
 }
-
-
-
-//int main()
-//{
-//	srand((unsigned)time(NULL));
-//	Bird birds[N_PAJAROS];
-//	position pos;
-//	for (int i = 0; i < N_PAJAROS; i++)
-//	{
-//		birds[i].initRandom(USER_DATA_EYESIGHT, USER_DATA_SPEED);
-//	}
-//	PRINT_PAJAROS
-//	for (int k = 0; k < N_PAJAROS; k++)
-//	{
-//		birds[k].calculateNewDir(birds, N_PAJAROS);
-//	}
-//	for (int j = 0; j < N_PAJAROS; j++)
-//	{
-//		birds[j].move();
-//	}
-//	PRINT_PAJAROS
-//	//Prueba de impresion de pajaros
-//	viewer view(100, 70, birds, N_PAJAROS);
-//	view.init_allegro();
-//	if (!view.is_init_ok()) {
-//		return -2;
-//	}
-//	view.update_display();
-//
-//	getchar();
-//	return 0;
-//}
-
-
-//Prueba de impresion de pajaros
-/*viewer view(100, 70, birds, N_PAJAROS);
-view.init_allegro();
-if (!view.is_init_ok()) {
-return -2;
-}
-view.update_display();*/
