@@ -98,6 +98,7 @@ int main(int argc, char *argv[])
 		control1.update_ctrl();
 		sim.update(birds, sim_data.bird_cnt_data.value);
 		view.update_display();
+		al_rest(0.01);
 	}
 
 	delete[] birds;
