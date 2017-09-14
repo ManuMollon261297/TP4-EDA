@@ -1,15 +1,14 @@
 #include "controller.h"
 
-const float FPS = 15.0;
-const float FPS_GRAPHIC = FPS*0.9;  
-// sincronizacion de timers
+const float FPS = 60.0;
+const unsigned int SENSIBILITY_CONST = 7;
 
 controller::controller(unsigned int toggle_key_ , unsigned int timer_c_, std::string key_pressed_, unsigned int maxrandomjigglelimit_ , unsigned int maxspeed_, unsigned int maxeyesight_ ) {
 	event_queue =  nullptr;
 	timer = nullptr;
-	timer_graphic = nullptr;
 	display = nullptr;
 	toggle_key = toggle_key_;
+	timer_c = timer_c_;
 	key_pressed = key_pressed_;
 	maxrandomjigglelimit = maxrandomjigglelimit_;
 	maxspeed = maxspeed_;
@@ -37,16 +36,8 @@ int controller::control_init() {
 		al_start_timer(timer);
 	}
 
-	timer_graphic = al_create_timer(1.0 / ((birds->getSpeed()) *FPS_GRAPHIC));
-	if (timer_graphic == nullptr) {
-		return -1;
-	}
-	else {
-		al_start_timer(timer_graphic);
-	}
-
 	
-	//timerc_max = SENSIBILITY_CONST; // esta variable es de ajuste fino de la actualizacion 
+	timerc_max = SENSIBILITY_CONST; // esta variable es de ajuste fino de la actualizacion 
 	// de teclas
 
 	return 0;
@@ -57,7 +48,6 @@ int controller::register_events() {
 	if (display != nullptr) {
 		al_register_event_source(event_queue, al_get_display_event_source(display));
 		al_register_event_source(event_queue, al_get_timer_event_source(timer));
-		al_register_event_source(event_queue, al_get_timer_event_source(timer_graphic));
 		al_register_event_source(event_queue, al_get_keyboard_event_source());
 	}
 	else {
@@ -82,7 +72,60 @@ int controller::isnotexit() {
 }
 
 void controller::update_ctrl(void) {
-	 if (evs.type == ALLEGRO_EVENT_KEY_DOWN) {
+	if (evs.type == ALLEGRO_EVENT_TIMER) {
+		
+		if (timer_c < timerc_max) { // esto es para frenar la actualizacion de 
+			timer_c++;				// teclas
+		}
+		else {
+			timer_c = 0;
+
+			if (!key_pressed.compare("KEY62")) { //  KEY62 es '+'
+				for (int i = 0; i < birdcount; i++) {
+					if (birds[i].getSpeed() < maxspeed) {
+						birds[i].incrementSpeed();
+					}
+				}
+			}
+			if (!key_pressed.compare("KEY61")) { // KEY 61 es '-' 
+				for (int i = 0; i < birdcount; i++) {
+					if (birds[i].getSpeed() > 0) {
+						birds[i].decrementSpeed();
+					}
+				}
+			}
+			if (!key_pressed.compare("E")) {
+				for (int i = 0; i < birdcount; i++) {
+					if (birds[i].getMaxRandomJiggle() < maxrandomjigglelimit)
+						birds[i].incrementMaxRandomJiggle();
+				}
+			}
+			if (!key_pressed.compare("D")) {
+				for (int i = 0; i < birdcount; i++) {
+					if (birds[i].getMaxRandomJiggle()>0) {
+						birds[i].decrementMaxRandomJiggle();
+					}
+				}
+			}
+			if (!key_pressed.compare("R")) {
+				for (int i = 0; i < birdcount; i++) {
+					if (birds[i].getEyesight() < maxeyesight) {
+						birds[i].incrementEyesight();
+					}
+				}
+			}
+			if (!key_pressed.compare("F")) {
+				for (int i = 0; i < birdcount; i++) {
+					if ((birds[i].getEyesight()) > 0) {
+						birds[i].decrementEyesight();
+					}
+				}
+			}
+		}
+		
+	}
+	
+	else if (evs.type == ALLEGRO_EVENT_KEY_DOWN) {
 		if (toggle_key == 0) {
 			key_pressed = al_keycode_to_name(evs.keyboard.keycode);
 			toggle_key = 1;
@@ -108,72 +151,10 @@ void controller::setBirdPointer(Bird * p2bird) {
 		birds = p2bird;
 	}
 }
+// display // set birds y setbirdcount
 
-int controller::ctrl_update_time() {
-	int ans = 0;
-	if (evs.timer.source == timer) {
-		ans = 1;
-	}
-	return ans;
-}
-int controller::graphic_update_time() {
-	int ans = 0;
-	if (evs.timer.source == timer_graphic) {
-		ans = 1;
-	}
-	return ans;
-}
+
 controller::~controller(void) {
-	al_stop_timer(timer);
-	al_stop_timer(timer_graphic);
 	al_destroy_timer(timer);
-	al_destroy_timer(timer_graphic);
 	al_destroy_event_queue(event_queue);
-}
-
-void controller::process_key(void) {
-	if (!key_pressed.compare("KEY62")) { //  KEY62 es '+'
-		for (unsigned int i = 0; i < birdcount; i++) {
-			if (birds[i].getSpeed() < maxspeed) {
-				birds[i].incrementSpeed();
-				
-			}
-			al_set_timer_speed(timer_graphic, 1.0 / (birds[0].getSpeed()*FPS_GRAPHIC));
-		}
-	}
-	if (!key_pressed.compare("KEY61")) { // KEY 61 es '-' 
-		for (unsigned int i = 0; i < birdcount; i++) {
-			if (birds[i].getSpeed() >1) {
-				birds[i].decrementSpeed();
-			}
-		}
-		al_set_timer_speed(timer_graphic, 1.0 / (birds[0].getSpeed() *FPS_GRAPHIC));
-	}
-	if (!key_pressed.compare("E")) {
-		for (unsigned int i = 0; i < birdcount; i++) {
-			if (birds[i].getMaxRandomJiggle() < maxrandomjigglelimit)
-				birds[i].incrementMaxRandomJiggle();
-		}
-	}
-	if (!key_pressed.compare("D")) {
-		for (unsigned int i = 0; i < birdcount; i++) {
-			if (birds[i].getMaxRandomJiggle()>0) {
-				birds[i].decrementMaxRandomJiggle();
-			}
-		}
-	}
-	if (!key_pressed.compare("R")) {
-		for (unsigned int i = 0; i < birdcount; i++) {
-			if (birds[i].getEyesight() < maxeyesight) {
-				birds[i].incrementEyesight();
-			}
-		}
-	}
-	if (!key_pressed.compare("F")) {
-		for (unsigned int i = 0; i < birdcount; i++) {
-			if ((birds[i].getEyesight()) > 0) {
-				birds[i].decrementEyesight();
-			}
-		}
-	}
 }
