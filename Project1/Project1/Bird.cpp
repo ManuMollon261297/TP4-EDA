@@ -205,13 +205,14 @@ double Bird::deg2rad(double angulo_deg)
 	return ((angulo_deg*pi) / 180.0);
 }
 
-void Bird::initRandom(unsigned int udEyesight, unsigned int udSpeed)
+void Bird::initRandom(unsigned int udEyesight, unsigned int udSpeed,unsigned int udMaxRandomJiggle)
 {
 	currentDir = (double)(rand()) / ((double)(RAND_MAX /359.999));
 	p.posx = (double)(rand()) / ((double)(RAND_MAX / xMax));
 	p.posy = (double)(rand()) / ((double)(RAND_MAX / yMax));
 	speed = udSpeed;
 	eyesight = udEyesight;
+	maxRandomJiggle = udMaxRandomJiggle;
 }
 
 double Bird::getSpeed(void)

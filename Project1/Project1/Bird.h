@@ -24,7 +24,7 @@ public:
 	double getEyesight(void);
 	double getMaxRandomJiggle(void);
 	double getSpeed(void);
-	void initRandom(unsigned int udEyesight,unsigned int udSpeed);
+	void initRandom(unsigned int udEyesight,unsigned int udSpeed, unsigned int udMaxRandomJiggle);
 
 private:
 	position p;

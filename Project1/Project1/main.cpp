@@ -6,7 +6,7 @@
 #include "simulation.h"
 #include "controller.h"
 
-#define MAX_ANGLE 359.9
+#define MAX_ANGLE 359.999
 #define AUX_LEN 20 
 #define EOT '\0'
 #define MAX_RANDOMJIGGLE 10
@@ -14,7 +14,7 @@
 #define NO_DATA -1
 #define RECIEVED_DATA 1
 
-#define PRINT_PAJAROS for (int i = 0; i < N_PAJAROS; i++){ pos = birds[i].getPos(); cout << "POSX:"<<pos.posx << endl; cout << "POSY:"<< pos.posy << endl; cout << "DIR:" << birds[i].getDir() << endl;}
+
 using namespace std;
 
 // Estructuras para recepcion de datos //
@@ -50,10 +50,10 @@ int main(int argc, char *argv[])
 	sim_data.eyeSight_data.flag = NO_DATA;
 	sim_data.randomJiggle_data.flag = NO_DATA;
 	
-	char *test[] = { "FileName", "-birds", "20", "-eyesight", "3", "-randomjiggle", "2"};
+	char *test[] = { "FileName", "-birds", "20", "-eyesight", "3", "-randomjiggle", "2"}; //comentarlo\borrarlo
 	int cmd_ans = 0;
 	
-	cmd_ans = parseCmdLine(7, test, parseCallback, &sim_data);
+	cmd_ans = parseCmdLine(7, test, parseCallback, &sim_data); //argv,argc
 
 	if (!cmd_ans) {
 		cout << "Los datos ingresados no son correctos" << endl;
@@ -68,7 +68,7 @@ int main(int argc, char *argv[])
 
 	for (int i = 0; i < sim_data.bird_cnt_data.value; i++) // Inicializacion de pajaros
 	{
-		birds[i].initRandom(sim_data.eyeSight_data.value, 1); // Velocidad predeterminada inicial = 1
+		birds[i].initRandom(sim_data.eyeSight_data.value, 1,sim_data.randomJiggle_data.value); // Velocidad predeterminada inicial = 1
 	}
 
 	controller control1;
@@ -88,7 +88,7 @@ int main(int argc, char *argv[])
 		return -1;
 	} 
 
-	control1.display = view.display; // controller necesita de un puntero al display para poder registrarlo
+	control1.setDisplay(view.display); // controller necesita de un puntero al display para poder registrarlo
 	
 	if (control1.register_events()) {
 		delete[] birds;
@@ -198,45 +198,3 @@ int look_on_table(char arr[]) {
 
 	return ((lookup_table[k] == "EOTABLE") ? -1 : k);
 }
-
-
-
-//int main()
-//{
-//	srand((unsigned)time(NULL));
-//	Bird birds[N_PAJAROS];
-//	position pos;
-//	for (int i = 0; i < N_PAJAROS; i++)
-//	{
-//		birds[i].initRandom(USER_DATA_EYESIGHT, USER_DATA_SPEED);
-//	}
-//	PRINT_PAJAROS
-//	for (int k = 0; k < N_PAJAROS; k++)
-//	{
-//		birds[k].calculateNewDir(birds, N_PAJAROS);
-//	}
-//	for (int j = 0; j < N_PAJAROS; j++)
-//	{
-//		birds[j].move();
-//	}
-//	PRINT_PAJAROS
-//	//Prueba de impresion de pajaros
-//	viewer view(100, 70, birds, N_PAJAROS);
-//	view.init_allegro();
-//	if (!view.is_init_ok()) {
-//		return -2;
-//	}
-//	view.update_display();
-//
-//	getchar();
-//	return 0;
-//}
-
-
-//Prueba de impresion de pajaros
-/*viewer view(100, 70, birds, N_PAJAROS);
-view.init_allegro();
-if (!view.is_init_ok()) {
-return -2;
-}
-view.update_display();*/

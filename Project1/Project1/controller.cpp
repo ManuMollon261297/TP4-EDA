@@ -136,3 +136,34 @@ void controller::process_key(void) {
 	}
 
 }
+
+bool controller::setDisplay(ALLEGRO_DISPLAY * display_) {
+	display = display_;
+	if (display == NULL)
+	{
+		return false;
+	}
+	return true;
+}
+
+ALLEGRO_DISPLAY * controller::getDisplay(void) {
+	return display;
+}
+
+bool controller::setEventQueue(ALLEGRO_EVENT_QUEUE * eventQueue) {
+	event_queue = eventQueue;
+	return true;
+}
+
+ALLEGRO_EVENT_QUEUE * controller::getEventQueue(void) {
+	return event_queue;
+}
+
+bool controller::setKeyPressed(string keyPressed) {
+	key_pressed = keyPressed;
+	return true;
+}
+
+string controller::getKeyPressed(void) {
+	return key_pressed;
+}

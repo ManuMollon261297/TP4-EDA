@@ -1,2 +1,7 @@
-﻿  Project1.vcxproj -> C:\Users\Compaq-CQ50\source\repos\TP4-EDA\Project1\x64\Debug\Project1.exe
-  Project1.vcxproj -> C:\Users\Compaq-CQ50\source\repos\TP4-EDA\Project1\x64\Debug\Project1.pdb (Partial PDB)
+﻿  main.cpp
+c:\users\manuel mollon\source\repos\tp4-eda\project1\project1\main.cpp(69): warning C4018: '<': signed/unsigned mismatch
+  Generating Code...
+  Skipping... (no relevant changes detected)
+  controller.cpp
+  Project1.vcxproj -> C:\Users\Manuel Mollon\source\repos\TP4-EDA\Project1\x64\Debug\Project1.exe
+  Project1.vcxproj -> C:\Users\Manuel Mollon\source\repos\TP4-EDA\Project1\x64\Debug\Project1.pdb (Partial PDB)
