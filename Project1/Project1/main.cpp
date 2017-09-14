@@ -49,7 +49,7 @@ int main(int argc, char *argv[])
 	sim_data.eyeSight_data.flag = NO_DATA;
 	sim_data.randomJiggle_data.flag = NO_DATA;
 	
-	char *test[] = { "FileName", "-birds", "15", "-eyesight", "3", "-randomjiggle", "2"};
+	char *test[] = { "FileName", "-birds", "20", "-eyesight", "3", "-randomjiggle", "2"};
 	int cmd_ans = 0;
 	
 	cmd_ans = parseCmdLine(7, test, parseCallback, &sim_data);

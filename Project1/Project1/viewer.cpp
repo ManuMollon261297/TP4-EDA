@@ -117,7 +117,6 @@ void viewer::update_display()
 	                    
 	string values_txt = "Current values -> Speed: " + speed_txt + " - Random Jiggle: " + jiggle_txt + " - EyeSight: " + eyesight_txt;
 	const char* values_txt_f = values_txt.c_str();
-
 	al_draw_text(text, WHITE, DISP_W/2, 25, ALLEGRO_ALIGN_CENTER, "SIMULACION: Bandada de Pajaros - (Para salir cierre la ventana o presione ESC)");
 	al_draw_text(text, WHITE, DISP_W/2, DISP_H-70, ALLEGRO_ALIGN_CENTER,"Opciones de Teclado (+/-) -> Speed (+/-) - RandomJiggle (E/D) - EyeSight (R/F)");
 	al_draw_text(text, WHITE, DISP_W / 2, DISP_H - 40, ALLEGRO_ALIGN_CENTER, values_txt_f);

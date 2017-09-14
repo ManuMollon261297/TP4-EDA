@@ -46,7 +46,7 @@ void Bird::calculateNewDir(Bird * birds, unsigned int birdCount)
 
 void Bird::move(void)
 {
-	for (int i = 0; i < speed; i++)
+	for (int i = 0; i < (speed+2)/3; i++)
 	{
 		position newP;
 		double angle_deg = newDir;
@@ -92,7 +92,6 @@ void Bird::move(void)
 		p.posx = newP.posx;
 		p.posy = newP.posy;
 		currentDir = newDir;
-		//newDir = 0;
 	}
 }
 
