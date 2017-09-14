@@ -98,10 +98,8 @@ int main(int argc, char *argv[])
 		control1.update_ctrl();
 		sim.update(birds, sim_data.bird_cnt_data.value);
 		view.update_display();
-		//cout << birds->getSpeed() << "-" << birds->getMaxRandomJiggle() << endl;
 	}
 
-	control1.~controller();
 	delete[] birds;
 	return 0;
 }
@@ -115,7 +113,7 @@ int parseCallback(char *key, char *value, void *userData) {
 	char aux_key[AUX_LEN];
 
 	if (key == NULL) {
-		ret = 0; // Solo recibe opciones, no parametros
+		ret = 0; // Solo recibe opciones, no parametros, por eso no miramos value
 	}
 	else {
 		lowerize_word(key, aux_key, AUX_LEN); // Paso todo a minusculas
