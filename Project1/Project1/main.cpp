@@ -9,7 +9,8 @@
 #define MAX_ANGLE 359.9
 #define AUX_LEN 20 
 #define EOT '\0'
-#define SPEED 1
+#define MAX_RANDOMJIGGLE 10
+#define MAX_EYESIGHT 30
 #define NO_DATA -1
 #define RECIEVED_DATA 1
 
@@ -67,7 +68,7 @@ int main(int argc, char *argv[])
 
 	for (int i = 0; i < sim_data.bird_cnt_data.value; i++) // Inicializacion de pajaros
 	{
-		birds[i].initRandom(sim_data.eyeSight_data.value, SPEED); // Velocidad predeterminada inicial
+		birds[i].initRandom(sim_data.eyeSight_data.value, 1); // Velocidad predeterminada inicial = 1
 	}
 
 	controller control1;
@@ -142,7 +143,7 @@ int parseCallback(char *key, char *value, void *userData) {
 			else if (!strcmp(aux_key, "eyesight")) { // Eyesight de los pajaros
 				if (birdSim_data->eyeSight_data.flag == NO_DATA) {
 					aux_value = atoi(value);
-					if (aux_value <= 0) {
+					if ((aux_value <= 0)||(aux_value > MAX_EYESIGHT)) {
 						ret = 0;
 					}
 					else {
@@ -158,7 +159,7 @@ int parseCallback(char *key, char *value, void *userData) {
 			else if (!strcmp(aux_key, "randomjiggle")) { // Random Jiggle de los pajaros
 				if (birdSim_data->randomJiggle_data.flag == NO_DATA) {
 					aux_value = atoi(value);
-					if (aux_value <= 0) {
+					if ((aux_value <= 0)||(aux_value > MAX_RANDOMJIGGLE)) {
 						ret = 0;
 					}
 					else {

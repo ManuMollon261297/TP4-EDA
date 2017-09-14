@@ -1,20 +1,6 @@
-﻿  viewer.cpp
-  simulation.cpp
-c:\users\compaq-cq50\source\repos\tp4-eda\project1\project1\simulation.cpp(5): warning C4018: '<': signed/unsigned mismatch
-c:\users\compaq-cq50\source\repos\tp4-eda\project1\project1\simulation.cpp(9): warning C4018: '<': signed/unsigned mismatch
-  main.cpp
+﻿  main.cpp
 c:\users\compaq-cq50\source\repos\tp4-eda\project1\project1\main.cpp(68): warning C4018: '<': signed/unsigned mismatch
-  lib.cpp
   controller.cpp
-c:\users\compaq-cq50\source\repos\tp4-eda\project1\project1\controller.cpp(84): warning C4018: '<': signed/unsigned mismatch
-c:\users\compaq-cq50\source\repos\tp4-eda\project1\project1\controller.cpp(91): warning C4018: '<': signed/unsigned mismatch
-c:\users\compaq-cq50\source\repos\tp4-eda\project1\project1\controller.cpp(98): warning C4018: '<': signed/unsigned mismatch
-c:\users\compaq-cq50\source\repos\tp4-eda\project1\project1\controller.cpp(104): warning C4018: '<': signed/unsigned mismatch
-c:\users\compaq-cq50\source\repos\tp4-eda\project1\project1\controller.cpp(111): warning C4018: '<': signed/unsigned mismatch
-c:\users\compaq-cq50\source\repos\tp4-eda\project1\project1\controller.cpp(118): warning C4018: '<': signed/unsigned mismatch
-  Bird.cpp
-c:\users\compaq-cq50\source\repos\tp4-eda\project1\project1\bird.cpp(28): warning C4018: '<': signed/unsigned mismatch
-c:\users\compaq-cq50\source\repos\tp4-eda\project1\project1\bird.cpp(49): warning C4018: '<': signed/unsigned mismatch
   Generating Code...
   Project1.vcxproj -> C:\Users\Compaq-CQ50\source\repos\TP4-EDA\Project1\Debug\Project1.exe
   Project1.vcxproj -> C:\Users\Compaq-CQ50\source\repos\TP4-EDA\Project1\Debug\Project1.pdb (Partial PDB)
